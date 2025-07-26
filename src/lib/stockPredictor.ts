@@ -217,7 +217,6 @@ export async function predictPrice(model: any, stockData: StockData[]): Promise<
       }
       
       // Adjust confidence based on volatility
-      const recentVolatility = Math.std(prices.slice(-10)) / Math.mean(prices.slice(-10));
       confidence = Math.max(0.3, confidence - (recentVolatility * 2));
       
       const result: PredictionResult = {
