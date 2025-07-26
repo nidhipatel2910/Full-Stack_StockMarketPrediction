@@ -47,7 +47,7 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user, account, profile }: { user: User; account: Account | null; profile?: Profile }) {
+    async signIn({ user, account }: { user: User; account: Account | null; profile?: Profile }) {
       if (!account || !user) return false;
       const client = await clientPromise;
       const db = client.db();
@@ -80,7 +80,7 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async jwt({ token, user, account }: { token: JWT; user?: User; account?: Account | null }) {
+    async jwt({ token, user }: { token: JWT; user?: User; account?: Account | null }) {
       if (user) {
         token.id = user.id;
         token.role = (user as { role?: string }).role || "user";

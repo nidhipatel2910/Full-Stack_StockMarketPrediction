@@ -18,7 +18,7 @@ export default function AuditLogsPage() {
   const [actionFilter, setActionFilter] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pageSize = 10;
+  // const pageSize = 10; // Unused variable
 
   useEffect(() => {
     if (!session || session.user.role !== "admin") return;

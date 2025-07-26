@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
-import { Line } from "react-chartjs-2";
 import StockDataInput from "./StockDataInput";
 import StockChart from "./StockChart";
 import PredictionResults from "./PredictionResults";
@@ -28,7 +27,7 @@ export default function StockPredictor() {
   const [prediction, setPrediction] = useState<PredictionResult | null>(null);
   const [isTraining, setIsTraining] = useState(false);
   const [isPredicting, setIsPredicting] = useState(false);
-  const [model, setModel] = useState<any>(null);
+  const [model, setModel] = useState<unknown>(null);
 
   const handleDataLoad = (data: StockData[]) => {
     setStockData(data);

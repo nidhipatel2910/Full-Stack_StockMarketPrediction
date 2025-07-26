@@ -15,7 +15,7 @@ export default function AdminUserPage() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
-  const session = useSession().data;
+  // const session = useSession().data; // Unused variable
 
   const fetchUsers = async () => {
     setLoading(true);

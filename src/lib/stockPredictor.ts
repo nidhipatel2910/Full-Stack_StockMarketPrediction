@@ -1,9 +1,10 @@
 import { StockData, PredictionResult } from '@/components/StockPredictor';
 
 // Import brain.js conditionally to avoid SSR issues
-let brain: any = null;
+let brain: typeof import('brain.js') | null = null;
 if (typeof window !== 'undefined') {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     brain = require('brain.js');
   } catch (error) {
     console.warn('Brain.js not available:', error);
@@ -81,7 +82,7 @@ function calculateRSI(prices: number[], period: number = 14): number[] {
 }
 
 // Advanced prediction algorithm using Brain.js when available, fallback to technical analysis
-export async function trainModel(stockData: StockData[]): Promise<any> {
+export async function trainModel(stockData: StockData[]): Promise<unknown> {
   return new Promise(async (resolve, reject) => {
     try {
       const prices = stockData.map(item => item.price);
@@ -176,7 +177,7 @@ export async function trainModel(stockData: StockData[]): Promise<any> {
 }
 
 // Make prediction using Brain.js when available, fallback to technical analysis
-export async function predictPrice(model: any, stockData: StockData[]): Promise<PredictionResult> {
+export async function predictPrice(model: unknown, stockData: StockData[]): Promise<PredictionResult> {
   return new Promise(async (resolve, reject) => {
     try {
       const prices = stockData.map(item => item.price);

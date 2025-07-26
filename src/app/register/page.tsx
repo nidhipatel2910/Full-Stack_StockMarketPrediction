@@ -23,7 +23,7 @@ export default function RegisterPage() {
       data = {};
     }
     if (!res.ok) {
-      setError((data as any).error || "Registration failed");
+      setError((data as { error?: string }).error || "Registration failed");
     } else {
       router.push("/login");
     }

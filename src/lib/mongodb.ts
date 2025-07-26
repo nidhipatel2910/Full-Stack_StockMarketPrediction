@@ -7,7 +7,7 @@ let client;
 let clientPromise: Promise<MongoClient>;
 
 declare global {
-  // eslint-disable-next-line no-var
+  // Removed unused eslint directive
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 

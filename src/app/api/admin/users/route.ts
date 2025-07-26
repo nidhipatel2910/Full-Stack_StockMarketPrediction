@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 import { logAuditEvent } from "@/lib/audit";
 
-export async function GET(req: Request) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   console.log("API session:", session); // Debug session object
   if (!session || session.user.role !== "admin") {

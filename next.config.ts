@@ -7,10 +7,6 @@ const nextConfig: NextConfig = {
   },
   // Enable static exports for Vercel
   output: 'standalone',
-  // Handle native modules
-  experimental: {
-    esmExternals: 'loose',
-  },
   // Webpack configuration for native modules
   webpack: (config, { isServer }) => {
     if (!isServer) {

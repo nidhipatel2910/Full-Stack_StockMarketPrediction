@@ -43,8 +43,8 @@ export default function StockChart({ data, prediction }: StockChartProps) {
   const prices = data.map(item => item.price);
 
   // Add prediction point if available
-  let chartLabels = [...labels];
-  let chartPrices = [...prices];
+  const chartLabels = [...labels];
+  const chartPrices = [...prices];
   let predictionDataset = null;
 
   if (prediction) {
@@ -58,7 +58,7 @@ export default function StockChart({ data, prediction }: StockChartProps) {
     
     // Create a more realistic prediction line
     const lastPrice = prices[prices.length - 1];
-    const predictionChange = prediction.predictedPrice - lastPrice;
+    // const predictionChange = prediction.predictedPrice - lastPrice; // Unused variable
     
     predictionDataset = {
       label: 'Predicted Price',
@@ -113,7 +113,7 @@ export default function StockChart({ data, prediction }: StockChartProps) {
         mode: 'index' as const,
         intersect: false,
         callbacks: {
-          label: function(context: any) {
+          label: function(context: unknown) {
             let label = context.dataset.label || '';
             if (label) {
               label += ': ';
@@ -147,7 +147,7 @@ export default function StockChart({ data, prediction }: StockChartProps) {
           text: 'Price ($)',
         },
         ticks: {
-          callback: function(value: any) {
+          callback: function(value: unknown) {
             return '$' + value.toFixed(2);
           },
         },
