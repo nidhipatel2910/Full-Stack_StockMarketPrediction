@@ -14,6 +14,14 @@ export default function NavBar() {
           >
             Home
           </Link>
+          {session && (
+            <Link
+              href="/predict"
+              className="text-indigo-700 font-semibold hover:text-indigo-900 transition-colors px-3 py-1 rounded hover:bg-indigo-50"
+            >
+              Predict
+            </Link>
+          )}
           <Link
             href="/about"
             className="text-indigo-700 font-semibold hover:text-indigo-900 transition-colors px-3 py-1 rounded hover:bg-indigo-50"

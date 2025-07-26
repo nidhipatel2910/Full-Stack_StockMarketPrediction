@@ -1,6 +1,10 @@
+"use client";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function HomePage() {
+  const { data: session } = useSession();
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-indigo-100 to-indigo-200">
       <section className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-2xl p-10 flex flex-col items-center border border-indigo-100">
@@ -24,22 +28,41 @@ export default function HomePage() {
             MERN Full-Stack Assignment
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 mb-2 text-center max-w-xl">
-            Explore a modern, production-grade web application built with{" "}
+            Explore a modern, production-grade web application featuring{" "}
+            <span className="font-semibold text-indigo-600">Stock Market Prediction</span> with{" "}
+            <span className="font-semibold text-indigo-600">Brain.js</span>, built using{" "}
             <span className="font-semibold text-indigo-600">MongoDB</span>,{" "}
             <span className="font-semibold text-indigo-600">Express</span>,{" "}
             <span className="font-semibold text-indigo-600">React</span>, and{" "}
-            <span className="font-semibold text-indigo-600">Node.js</span> using{" "}
+            <span className="font-semibold text-indigo-600">Node.js</span> with{" "}
             <span className="font-semibold text-indigo-600">Next.js</span> and{" "}
             <span className="font-semibold text-indigo-600">Tailwind CSS</span>.
           </p>
         </div>
         <div className="flex flex-wrap gap-4 justify-center mt-2">
-          <Link
-            href="/register"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition text-lg"
-          >
-            Get Started
-          </Link>
+          {session ? (
+            <Link
+              href="/predict"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition text-lg"
+            >
+              Stock Predictor
+            </Link>
+          ) : (
+            <Link
+              href="/register"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition text-lg"
+            >
+              Get Started
+            </Link>
+          )}
+          {session && (
+            <Link
+              href="/register"
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition text-lg"
+            >
+              Register
+            </Link>
+          )}
           <Link
             href="/about"
             className="bg-white border border-indigo-200 hover:bg-indigo-50 text-indigo-700 font-semibold px-8 py-3 rounded-xl shadow-lg transition text-lg"
@@ -52,9 +75,9 @@ export default function HomePage() {
             MERN • Next.js • Tailwind CSS
           </span>
           <p className="mt-4 text-gray-500 text-center text-sm max-w-md">
-            This assignment demonstrates user authentication, dashboard, audit logs,
-            and a clean, responsive UI. Built for learning and production-ready
-            deployment.
+            This assignment demonstrates stock market prediction with Brain.js neural networks,
+            user authentication, dashboard, audit logs, and a clean, responsive UI. 
+            Built for learning and production-ready deployment.
           </p>
         </div>
       </section>
